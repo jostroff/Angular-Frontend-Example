@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+element.style {
+    cursor: pointer;
+}
+.header-and-footer {
+    background-color: #5C798E;
+    padding: 0.5em 1em 0.5em 0em;
+    color: #DCFFDC;
+    margin: 5px 0 5px 0;
+}
+/* user agent stylesheet */
+div {
+    display: block;
+}
+body {
+    font-family: Sans-serif;
+}

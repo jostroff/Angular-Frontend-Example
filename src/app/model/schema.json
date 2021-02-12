@@ -1,0 +1,573 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NewBase Format Schema",
+    "description": "Representation of plans in NewBase Format",
+    "required": [ "plans" ],
+    "type": "object",
+    "properties": {
+        "plans": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/plan" }
+        }
+    },
+    "definitions": {
+        "plan": {
+            "type": "object",
+            "properties": {
+                "planInfo": {
+                    "type": "object",
+                    "properties": {
+                        "businessLine": {
+                            "type": "string"
+                        },
+                        "businessLineCode": {
+                            "type": "string"
+                        },
+                        "claimAdjudicationBeginDate": {
+                            "type": "string"
+                        },
+                        "coveragePeriodStartMonth": {
+                            "type": "string"
+                        },
+                        "fundingArrangement": {
+                            "type": "string"
+                        },
+                        "initialClaimAdjudicationBeginDate": {
+                            "type": "string"
+                        },
+                        "legalEntity": {
+                            "type": "string"
+                        },
+                        "glCorpCode": {
+                            "type": "string"
+                        },
+                        "hipaa271ProductCode": {
+                            "type": "string"
+                        },
+                        "hipaa835ProductCode": {
+                            "type": "string"
+                        },
+                        "marketSegment": {
+                            "type": "string"
+                        },
+                        "mccCompliance": {
+                            "type": "string"
+                        },
+                        "mccComplianceCode": {
+                            "type": "string"
+                        },
+                        "noReferralAdjudicationPolicy": {
+                            "type": "string"
+                        },
+                        "planEffectiveDate": {
+                            "type": "string"
+                        },
+                        "planID": {
+                            "type": "string"
+                        },
+                        "planRenewalDate": {
+                            "type": "string"
+                        },
+                        "planType": {
+                            "type": "string"
+                        },
+                        "planVersion": {
+                            "type": "string"
+                        },
+                        "planVertical": {
+                            "type": "string"
+                        },
+                        "priorApprovalResponsibilities": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/priorApprovalResponsibility" }
+                        },
+                        "productFamily": {
+                            "type": "string"
+                        },
+                        "productLine": {
+                            "type": "string"
+                        },
+                        "productName": {
+                            "type": "string"
+                        },
+                        "productOffering": {
+                            "type": "string"
+                        },
+                        "productOfferingCode": {
+                            "type": "string"
+                        },
+                        "ratingState": {
+                            "type": "string"
+                        },
+                        "sellingPreferenceCode": {
+                            "type": "string"
+                        },
+                        "tierType": {
+                            "type": "string"
+                        },
+                        "tierTypeCode": {
+                            "type": "string"
+                        },
+                        "yearType": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                },
+                "planIntegrations": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/integration" }
+                },
+                "networks": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/network" }
+                },
+                "penalties": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/penalty" }
+                },
+                "planCostSharing": {
+                    "type": "object",
+                    "properties": {
+                        "planCoinsurances": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/coinsurance" }
+                        },
+                        "planDeductibles": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/deductible" }
+                        },
+                        "planOOPMaximums": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/oopMax" }
+                        }
+                    }
+                },
+                "benefits": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/benefit" }
+                }
+            }
+        },
+        "priorApprovalResponsibility": {
+            "type": "object",
+            "properties": {
+                "networkType": {
+                    "type": "string"
+                },
+                "responsibleParty": {
+                    "type": "string"
+                }
+            }
+        },
+        "attribute": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "indicator": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "integration": {
+            "type": "object",
+            "properties": {
+                "integratedPlanType": {
+                    "type": "string"
+                },
+                "soldTogether": {
+                    "type": "boolean"
+                },
+                "sharedAccumulators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/accumulator" }
+                }
+            }
+        },
+        "accumulator": {
+            "type": "object",
+            "properties": {
+                "accumulatorType": {
+                    "type": "string"
+                },
+                "networkType": {
+                    "type": "string"
+                },
+                "networkTier": {
+                    "type": "string"
+                },
+                "isShared": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "network": {
+            "type": "object",
+            "properties": {
+                "networkType": {
+                    "type": "string"
+                },
+                "networkTier": {
+                    "type": "string"
+                },
+                "networkCode": {
+                    "type": "string"
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                }
+            }
+        },
+        "copay": {
+            "type": "object",
+            "properties": {
+                "networkType": {
+                    "type": "string"
+                },
+                "networkTier": {
+                    "type": "string"
+                },
+                "providerTier": {
+                    "type": "string"
+                },
+                "providerTierCode": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                }
+            }
+        },
+        "coinsurance": {
+            "type": "object",
+            "properties": {
+                "networkType": {
+                    "type": "string"
+                },
+                "networkTier": {
+                    "type": "string"
+                },
+                "providerTier": {
+                    "type": "string"
+                },
+                "providerTierCode": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                }
+            }
+        },
+        "deductible": {
+            "type": "object",
+            "properties": {
+                "coverageType": {
+                    "type": "string"
+                },
+                "networkType": {
+                    "type": "string"
+                },
+                "networkTier": {
+                    "type": "string"
+                },
+                "providerTier": {
+                    "type": "string"
+                },
+                "providerTierCode": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                }
+            }
+        },
+        "oopMax": {
+            "type": "object",
+            "properties": {
+                "coverageType": {
+                    "type": "string"
+                },
+                "networkType": {
+                    "type": "string"
+                },
+                "networkTier": {
+                    "type": "string"
+                },
+                "providerTier": {
+                    "type": "string"
+                },
+                "providerTierCode": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                }
+            }
+        },
+        "benefit": {
+            "type": "object",
+            "properties": {
+                "serviceCode": {
+                    "type": "string"
+                },
+                "serviceCategory": {
+                    "type": "string",
+                    "description": "benefitCategory1"
+                },
+                "serviceName": {
+                    "type": "string",
+                    "description": "benefitCategory2"
+                },
+                "serviceProviderCategory": {
+                    "type": "string",
+                    "description": "benefitCategory3"
+                },
+                "placeOfService": {
+                    "type": "string",
+                    "description": "benefitCategory4"
+                },
+                "costshareGroupingName": {
+                    "type": "string",
+                    "description": "globalCSGroup"
+                },
+                "costshareRegimeIN": {
+                    "type": "string"
+                },
+                "costshareRegimeINCode": {
+                    "type": "string"
+                },
+                "costshareRegimeOON": {
+                    "type": "string"
+                },
+                "costshareRegimeOONCode": {
+                    "type": "string"
+                },
+                "costshareOrder": {
+                    "type": "string"
+                },
+                "stateMandate": {
+                    "type": "string"
+                },
+                "isExcluded": {
+                    "type": "boolean"
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                },
+                "networks": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/network" }
+                },
+                "penalties": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/penalty" }
+                },
+                "benefitCostsharing": {
+                    "type": "object",
+                    "properties": {
+                        "copays": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/copay" }
+                        },
+                        "coinsurances": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/coinsurance" }
+                        },
+                        "deductibles": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/deductible" }
+                        },
+                        "oopMaximums": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/oopMax" }
+                        },
+                        "sequences": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/costsharingSequence" }
+                        }
+                    }
+                },
+                "benefitLimits": {
+                    "type": "object",
+                    "properties": {
+                        "limits": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/benefitLimit" }
+                        },
+                        "sequences": {
+                            "type": "array",
+                            "items": { "$ref": "#/definitions/limitSequence" }
+                        }
+                    }
+                }
+            }
+        },
+        "penalty": {
+            "type": "object",
+            "properties": {
+                "dollarAmount": {
+                    "type": "string"
+                },
+                "percentAmount": {
+                    "type": "string"
+                },
+                "penaltyQualifier": {
+                    "type": "string"
+                }
+            }
+        },
+        "costsharingSequence": {
+            "type": "object",
+            "properties": {
+                "coverageType": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "counterStart": {
+                    "type": "string"
+                },
+                "counterStop": {
+                    "type": "string"
+                },
+                "copays": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/copay" }
+                },
+                "coinsurances": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/coinsurance" }
+                },
+                "deductibles": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/deductible" }
+                },
+                "oopMaximums": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/oopMax" }
+                }
+            }
+        },
+        "benefitLimit": {
+            "type": "object",
+            "properties": {
+                "coverageRange": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "limitType": {
+                    "type": "string"
+                },
+                "frequency": {
+                    "type": "string"
+                },
+                "unmappedAttributes": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/attribute" }
+                },
+                "unmappedIndicators": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/indicator" }
+                }
+            }
+        },
+        "limitSequence": {
+            "type": "object",
+            "properties": {
+                "coverageType": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "counterStart": {
+                    "type": "string"
+                },
+                "counterStop": {
+                    "type": "string"
+                },
+                "limits": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/benefitLimit" }
+                }
+            }
+        }
+    }
+}

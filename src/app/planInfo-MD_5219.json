@@ -1,0 +1,49 @@
+{
+    "plans": [
+        {
+            "planInfo": {
+                "productFamily": "Best Buy Tiered Copay",
+                "tierType": "Tiered Copay",
+                "hipaa271ProductCode": "PR",
+                "planVersion": "B02",
+                "sellingPreferenceCode": "Market Specific",
+                "tierTypeCode": "T2",
+                "productName": "CT PPO-Best Buy Tiered Copay",
+                "legalEntity": "HPHC Insurance Company",
+                "productLine": "PPO",
+                "businessLineCode": "COM",
+                "productOfferingCode": "A031",
+                "hipaa835ProductCode": "12",
+                "mccComplianceCode": "None",
+                "initialClaimAdjudicationBeginDate": "2020-01-01",
+                "priorApprovalResponsibilities": [
+                    {
+                        "responsibleParty": "Provider",
+                        "networkType": "IN"
+                    },
+                    {
+                        "responsibleParty": "Member",
+                        "networkType": "OON"
+                    }
+                ],
+                "marketSegment": "Small",
+                "planType": "planType",
+                "mccCompliance": "No MCC determination",
+                "productOffering": "HPHC Insurance Company PPO",
+                "claimAdjudicationBeginDate": "2020-01-01",
+                "coveragePeriodStartMonth": "JAN",
+                "fundingArrangement": "Fully Insured",
+                "noReferralAdjudicationPolicy": "N/A",
+                "yearType": "Plan",
+                "ratingState": "CT",
+                "businessLine": "Comprehensive Medical",
+                "planEffectiveDate": "2019-06-01",
+                "planVertical": "MEDICAL",
+                "planID": "MD0000005219",
+                "glCorpCode": "44",
+                "planRenewalDate": "2021-01-01",
+				"HSAQualifiedIndicator": "false"
+            }
+        }
+    ]
+}

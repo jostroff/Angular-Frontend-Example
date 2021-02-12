@@ -194,15 +194,28 @@
       </ng-container>
     </tr>
     <!-- <tr *ngFor="let plan of plans"> -->
-    <tr>
+    <tr *ngFor = "let copayTier of copayTiers; let index = index">
       <td class = "rowTitles">
-        Copay Tier 1
+        <ng-container *ngIf = "index != 4">
+          Copay Tier {{ index + 1 }}
+        </ng-container>
+        <ng-container *ngIf = "index == 4">
+          Copay (OON)
+        </ng-container>
       </td>
-      <td class = "rowData">
-        <ng-container *ngFor="let benefit of plan.benefits">
+      <td class = "rowData"> <!-- Note: 2/11/21... Flatten this. -->
+        <!-- <ng-container *ngFor="let benefit of plan.benefits">
           <ng-container *ngFor = "let copay of benefit.benefitCostsharing.copays">
             {{ copay.amount }}
           </ng-container>
+        </ng-container> -->
+
+        <!-- {{ copayTiers }} has toString() with extraneous commas.-->
+        <ng-container *ngIf = "copayTiers[index]">
+          {{ copayTiers[index] }} 
+        </ng-container>
+        <ng-container *ngIf = "copayTiers[index] == ''">
+          n/a
         </ng-container>
       </td>
       <td class = "rowTitles">
@@ -210,63 +223,6 @@
       </td>
       <td class = "rowData">
         
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        Copay Tier 2
-      </td>
-      <td class = "rowData">
-        {{ plan.planInfo.fundingArrangement }}
-      </td>
-
-      <td class = "rowTitles">
-        
-      </td>
-      <td class = "rowData">
-        
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        Copay Tier 3
-      </td>
-      <td class = "rowData">
-        {{ plan.planInfo.ratingState }}
-      </td>
-      <td class = "rowTitles">
-        Copay Tier 3
-      </td>
-      <td class = "rowData">
-        {{ plan.planInfo.ratingState }}
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        Copay Tier 4
-      </td>
-      <td class = "rowData">
-        {{ plan.planInfo.ratingState }}
-      </td>
-      <td class = "rowTitles">
-        Copay Tier 4
-      </td>
-      <td class = "rowData">
-        {{ plan.planInfo.productLine }}
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        Copay Tier (OON)
-      </td>
-      <td class = "rowData">
-        {{ plan.planInfo.productFamily }}
-      </td>
-      <td class = "rowTitles">
-        Copay Tier (OON)
-      </td>
-      <td class = "rowData">
-        {{ plan.planInfo.productFamily }}
       </td>
     </tr>
   </tbody>
@@ -305,6 +261,24 @@
       <th colspan = "4">Non-Tiered Deductibles</th>
     </tr>
   </thead>
+  <tbody>
+    <tr *ngFor = "let index of createRange(3);">
+      <td class = "rowTitles">
+        {{ nonTieredDDNames[2 * index] }}
+      </td>
+      <td class = "rowData">
+        {{ nonTieredDDMappings[2 * index] }}
+      </td>
+      <td class = "rowTitles">
+        {{ nonTieredDDNames[2 * index + 1] }}
+      </td>
+      <td class = "rowData">
+        {{ nonTieredDDMappings[2 * index + 1] }}
+      </td>
+    </tr>
+    
+  </tbody>
+
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Tiered Deductibles</th>

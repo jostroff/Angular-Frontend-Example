@@ -1822,7 +1822,7 @@ export class Plan_5219 implements Plan
                         "coinsurances": [
                             
                         ],
-                        "copays": [
+                        "copays": [ 
                             {
                                 "amount": "$0",
                                 "networkTier": "1",
@@ -2968,7 +2968,7 @@ export interface Penalty {
     penaltyQualifier: string;
 }
 
-export interface PlanCostSharing {
+export interface PlanCostSharing { 
     planCoinsurances: Coinsurance[];
     planOOPMaximums: OopMax[];
     planDeductibles: Deductible[];
@@ -3027,18 +3027,28 @@ export interface Benefit {
     unmappedIndicators: Indicator[];
     networks: Network[];
     penalties: Penalty[];
-    benefitCostsharing: {
+    benefitCostsharing: { 
         copays: Copay[],
         coinsurances: Coinsurance[],
         deductibles: Deductible[],
         oopMaximums: OopMax[],
         sequences: CostSharingSequence[]
-    },
+    };
+    // benefitCostSharing: BenefitCostSharing;
     benefitLimits: {
         limits: BenefitLimit[];
         sequences: LimitSequence[];
     }
+    // benefitLimits: BenefitLimit;
 }
+
+// export interface BenefitCostSharing {
+//     copays: Copay[];
+//     coinsurances: Coinsurance[];
+//     deductibles: Deductible[];
+//     oopMaximums: OopMax[];
+//     sequences: CostSharingSequence[];
+// }
 
 export interface Copay {
     networkType: string;

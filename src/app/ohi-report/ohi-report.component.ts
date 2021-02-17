@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 // import { Plan } from '../model/plan';
 import { Plan, Plan_5219, Copay, Benefit,  Deductible,
   OopMax, Coinsurance, LimitSequence, BenefitLimit, 
-  Indicator, Network
+  Indicator, Network, Attribute
 } from '../model/json_const';
 
 
@@ -21,7 +21,7 @@ export class OhiReportComponent implements OnInit{
   plan: Plan = new Plan_5219();
 
   copays: Copay[] = [];
-  copayTiers: string[] = ["", "", "", "", ""];
+  copayTiers: string[][] = [[], [], [], [], []];
 
   deductibles: Deductible[] = [];
   nonTieredDDMappings: string[] = ["n/a", "n/a", "n/a", "n/a", "No", "No"];
@@ -33,7 +33,53 @@ export class OhiReportComponent implements OnInit{
     "4 quarter 3 month Deductible Carry Over",
     "Separate DME Deductible"
   ];
+
+  oopMaxs: OopMax[] = [];
+  oopMaxDisplays: string[] = ["", "", "", ""];
   
+  coinsurances: Coinsurance[] = [];
+  coinsuranceInNetworkDisplays: string[] = [];
+  coinsuranceOutNetworkDisplays: string[] = [];
+
+  configNotes: string[] = [];
+
+  exclusions: string[] = [];
+
+  limitsDisplayLeft: string[] = [];
+  limitsDisplayRight: string[] = [];
+
+  /*
+  "serviceCode": "SER0141",
+  "benefitCategory": "Medical Equipment, Devices and Supplies",
+  "serviceName": "Hearing Aids",
+  "serviceProviderCategory": "",
+  "placeOfService": "Professional",
+  "costshareGroupingName": "Medical Equipment, Devices and Supplies",
+  "costshareOrder": "Deductible,Copay,Coinsurance",
+  "costshareRegimeIN": "Deductible then Coinsurance",
+  "costshareRegimeINCode": "PRD_DE_CN",
+  "costshareRegimeOON": "Deductible then Coinsurnace",
+  "costshareRegimeOONCode": "PRD_DE_CN",
+  "stateMandate": "",
+  "isExcluded": "false",
+  "locationCode": "12",
+  "benefitLimits": {
+    "limits": [
+        {
+            "coverageRange": "60 months",
+            "value": "$1500",
+            "limitType": "Benefit Maximum",
+            "frequency": "per Ear",
+            "unmappedAttributes": [
+                
+            ],
+            "unmappedIndicators": [
+                
+            ]
+        }
+    ],
+  */
+
   constructor() {
     // <ng-container *ngFor="let benefit of plan.benefits">
     //       <ng-container *ngFor = "let copay of benefit.benefitCostsharing.copays">
@@ -50,11 +96,33 @@ export class OhiReportComponent implements OnInit{
       for (var deductible of benefit.benefitCostsharing.deductibles){
         this.deductibles.push(deductible);
       }
+      for (var oopMax of benefit.benefitCostsharing.oopMaximums) {
+        this.oopMaxs.push(oopMax);
+      }
+      for (var coinsurance of benefit.benefitCostsharing.coinsurances){
+        this.coinsurances.push(coinsurance);
+      }
+      //benefitLimits.limits, sequences
+      for (var benefitLimit of benefit.benefitLimits.limits){
+        this.limitsDisplayLeft.push(benefit.serviceName);
+        this.limitsDisplayRight.push(benefitLimit.value + "-" + benefitLimit.frequency + "-" + benefitLimit.coverageRange);
+      }
 
+      if (benefit.isExcluded && !this.exclusions.includes(benefit.serviceName))
+        this.exclusions.push(benefit.serviceName);
 
+  // PlanCostSharing.planOOPMaximums
+
+      //CostSharingSequence
       for (var seq of benefit.benefitCostsharing.sequences){
         for (var copay of seq.copays){
           this.copays.push(copay);
+        }
+        for (var oopMax of seq.oopMaximums){
+          this.oopMaxs.push(oopMax);
+        }
+        for (var coinsurance of seq.coinsurances){
+          this.coinsurances.push(coinsurance);
         }
       }
 
@@ -63,6 +131,12 @@ export class OhiReportComponent implements OnInit{
         for (var deductible of seq.deductibles){
           this.deductibles.push(deductible);
         }
+        for (var oopMax of seq.oopMaximums){
+          this.oopMaxs.push(oopMax);
+        }
+        for (var coinsurance of seq.coinsurances){
+          this.coinsurances.push(coinsurance);
+        }
       }
     }
     //Deductible, OopMax, Coinsurance, LimitSequence, 
@@ -70,9 +144,9 @@ export class OhiReportComponent implements OnInit{
     for (var copay of this.copays){
       // + (string) converts to (number).
       if (copay.networkType == "OON")
-        this.copayTiers[4] += copay.amount + " copay ";
+        this.copayTiers[4].push(copay.amount + " copay ");
       else
-        this.copayTiers[ (+ copay.networkTier) - 1] += copay.amount + " copay ";
+        this.copayTiers[ (+ copay.networkTier) - 1].push(copay.amount + " copay ");
     }
 
     for (var deductible of this.deductibles){
@@ -89,17 +163,35 @@ export class OhiReportComponent implements OnInit{
       else if (deductible.coverageType == "Member" && deductible.networkType == "OON")
         this.nonTieredDDMappings[5] = deductible.amount;
     }
-      /**
-        "coverageType": "Member",
-        "amount": "$8000",
-        "networkTier": "1",
-        "providerTier": "",
-        "providerTierCode": "0",
-        "location": "",
-        "networkType": "OON",
 
-        nonTieredDDMappings
-       */
+    // "coverageType": "Member",
+  // "amount": "$16300",
+  // "networkTier": "1",
+  // "providerTier": "",
+  // "providerTierCode": "0",
+  // "location": "",
+  // "networkType": "OON",
+    for (var oopMax of this.oopMaxs){
+      if (oopMax.coverageType == "Member" && oopMax.networkType == "IN")
+        this.oopMaxDisplays[0] = oopMax.amount;
+      else if (oopMax.coverageType == "Member" && oopMax.networkType == "OON")
+        this.oopMaxDisplays[1] = oopMax.amount;
+      else if (oopMax.coverageType == "Family" && oopMax.networkType == "IN")
+        this.oopMaxDisplays[2] = oopMax.amount;
+      else if (oopMax.coverageType == "Family" && oopMax.networkType == "OON")
+        this.oopMaxDisplays[3] = oopMax.amount;
+    }
+    for (var coinsurance of this.coinsurances){
+      if (coinsurance.networkType == "IN")
+        this.coinsuranceInNetworkDisplays.push(coinsurance.amount + " coinsurance");
+      else if (coinsurance.networkType == "OON")
+      this.coinsuranceOutNetworkDisplays.push(coinsurance.amount + " coinsurance");
+    }
+    for (var unmappedAttribute of this.plan.unmappedAttributes){
+      if (unmappedAttribute.name == "configNote"){
+        this.configNotes.push(unmappedAttribute.value);
+      }
+    }
   }
 
   createRange(number){ //To be used as indices in for loops on HTML.

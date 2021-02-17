@@ -23,11 +23,23 @@
 td {
     display: table-cell;
     vertical-align: inherit;
+    border-spacing: 2px;
     border: 2px solid black;
+    /* column-width: 1000px; */
 }
 table {
+    text-indent: initial;
     width: 100%;
 }
 th {
+    border: 2px solid black;
+}
+
+.unavailable {
+    background-color: lightgrey;
+    text-align: center;
+    font-size: 13px;
+    font-family: Arial,Helvetica,san-serif;
+    border-collapse: collapse;
     border: 2px solid black;
 }

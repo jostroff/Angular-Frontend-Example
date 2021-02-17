@@ -2880,6 +2880,7 @@ export class Plan_5219 implements Plan
     ]; //Added providerTierCode : "0" to the last deductible.
 }
 
+//Distinctive.
 export interface Plan {
     planInfo: PlanInfo;
     unmappedAttributes: Attribute[];

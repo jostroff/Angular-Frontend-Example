@@ -212,7 +212,9 @@
 
         <!-- {{ copayTiers }} has toString() with extraneous commas.-->
         <ng-container *ngIf = "copayTiers[index]">
-          {{ copayTiers[index] }} 
+          <ng-container *ngFor = "let c of copayTiers[index]">
+            {{ c }} <br/>
+          </ng-container>
         </ng-container>
         <ng-container *ngIf = "copayTiers[index] == ''">
           n/a
@@ -276,7 +278,6 @@
         {{ nonTieredDDMappings[2 * index + 1] }}
       </td>
     </tr>
-    
   </tbody>
 
   <thead class="sectionHeader">
@@ -284,26 +285,105 @@
       <th colspan = "4">Tiered Deductibles</th>
     </tr>
   </thead>
+  <tbody>
+    <tr>
+      <td class = "unavailable" colspan = 4>
+        n/a
+      </td>
+    </tr>
+  </tbody>
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Out-Of-Pocket Maximums</th>
     </tr>
   </thead>
+  <tbody>
+    <tr>
+      <td class = "rowTitles">
+        In-Network OOPM Per Member
+      </td>
+      <td class = "rowData">
+        {{ oopMaxDisplays[0] }}
+      </td>
+      <td class = "rowTitles">
+        Out-of-Network OOPM Per Member
+      </td>
+      <td class = "rowData">
+        {{ oopMaxDisplays[1] }}
+      </td>
+    </tr>
+    <tr>
+      <td class = "rowTitles">
+        In-Network OOPM Per Family
+      </td>
+      <td class = "rowData">
+        {{ oopMaxDisplays[2] }}
+      </td>
+      <td class = "rowTitles">
+        Out-of-Network OOPM Per Family
+      </td>
+      <td class = "rowData">
+        {{ oopMaxDisplays[3] }}
+      </td>
+    </tr>
+  </tbody>
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Coinsurance</th>
     </tr>
   </thead>
+  <tbody>
+    <tr>
+      <td class = "rowTitles">
+        In-Network Coinsurance
+      </td>
+      <td class = "rowData">
+        <!-- <li *ngFor="let hero of heroes$ | async" >
+          <a routerLink="/detail/{{hero.id}}">
+              {{hero.name}}
+          </a>
+      </li> -->
+        <ng-container *ngFor = "let c of coinsuranceInNetworkDisplays">
+          {{ c }} <br/>
+        </ng-container>
+      </td>
+      <td class = "rowTitles">
+        Out-of-Network Coinsurance
+      </td>
+      <td class = "rowData">
+        <ng-container *ngFor = "let c of coinsuranceOutNetworkDisplays">
+          {{ c }} <br/>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Configuration Notes</th>
     </tr>
   </thead>
+  <tbody>
+    <tr *ngFor = "let cn of configNotes">
+      <td class = "rowTitles">
+        ???
+      </td>
+      <td class = "rowData" colspan="3">
+        {{ cn }}
+      </td>
+    </tr>
+  </tbody>
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Exclusions</th>
     </tr>
   </thead>
+  <tbody>
+    <tr *ngFor = "let exclusion of exclusions">
+      <td class = "unavailable" colspan="4">
+        {{ exclusion }}
+      </td>
+    </tr>
+  </tbody>
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Limits</th>
@@ -312,25 +392,13 @@
   <tbody>
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr>
-      <td class = "rowTitles">
-        <!-- {{ plan.planInfo.productFamily }} BN0000031027 MA Wigs-->
-        <!-- {{ plan.benefits.benefitLimits[0].limits[0].coverageRange }} -->
+      <td class = "rowTitles" colspan="2">
+        {{ limitDisplayLeft }}
       </td>
       <!-- <td>{{ plan.planInfo.tierType }}</td> -->
-      <td class = "rowData">
-        ???
+      <td class = "rowData" colspan="2">
+        {{ limitDisplayRight }}
       </td>
-
-      <td class = "rowTitles">
-        Last Modified
-      </td>
-      <td></td>
-      <!-- <td class = "rowData">
-        <p *ngFor="let responsibility of plan.planInfo.priorApprovalResponsibilities">
-          Party: {{ responsibility.responsibleParty }}<br />
-          Type: {{ responsibility.networkType }}
-        </p>
-      </td> -->
     </tr>
   </tbody>
   <thead class="sectionHeader">

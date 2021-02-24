@@ -271,7 +271,7 @@ export class Plan_5219 implements Plan
         }
     ];
     "networks" = [
-        {
+        { 
             "networkTier": "1",
             "networkCode": "NT00066",
             "networkName": "UHC Options Out of Area National Network",
@@ -2881,6 +2881,16 @@ export class Plan_5219 implements Plan
 }
 
 //Distinctive.
+// "coverageRange": "60 months",
+// "value": "$1500",
+// "limitType": "Benefit Maximum",
+// "frequency": "per Ear",
+// "unmappedAttributes": [
+//     {}
+// ],
+// "unmappedIndicators": [
+//     {}
+// ]
 export interface Plan {
     planInfo: PlanInfo;
     unmappedAttributes: Attribute[];

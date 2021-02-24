@@ -45,8 +45,27 @@ export class OhiReportComponent implements OnInit{
 
   exclusions: string[] = [];
 
-  limitsDisplayLeft: string[] = [];
+  //"coverageRange": "60 months",
+  // "value": "$1500",
+  // "limitType": "Benefit Maximum",
+  // "frequency": "per Ear",
+  // "unmappedAttributes": [
+  //     {}
+  // ],
+  // "unmappedIndicators": [
+  //     {}
+  // ]
+  limitsDisplayLeft: string[] = []; //Benefit.benefitLimits
   limitsDisplayRight: string[] = [];
+
+  stateMandates: string[] = []; //
+  mandateBenefits: string[] = []; //Benefit serviceName
+
+  indicators: Indicator[] = [];
+
+  planLevelNetworks: Network[] = []; //--Plan Level Network
+  benefitLevelNetworks: Network[] = [];
+  benefitNetworkCodes: string[] = []; //Codes to associate to benefits.
 
   /*
   "serviceCode": "SER0141",
@@ -111,6 +130,16 @@ export class OhiReportComponent implements OnInit{
       if (benefit.isExcluded && !this.exclusions.includes(benefit.serviceName))
         this.exclusions.push(benefit.serviceName);
 
+      if (!this.mandateBenefits.includes(benefit.serviceName)){
+        this.stateMandates.push(benefit.stateMandate);
+        this.mandateBenefits.push(benefit.serviceName);
+      }
+
+      for (var network of benefit.networks){
+        if (!this.benefitNetworkCodes.includes(network.networkCode)){
+          this.benefitNetworkCodes.push(network.networkCode);
+        }
+      }
   // PlanCostSharing.planOOPMaximums
 
       //CostSharingSequence
@@ -171,6 +200,8 @@ export class OhiReportComponent implements OnInit{
   // "providerTierCode": "0",
   // "location": "",
   // "networkType": "OON",
+
+  
     for (var oopMax of this.oopMaxs){
       if (oopMax.coverageType == "Member" && oopMax.networkType == "IN")
         this.oopMaxDisplays[0] = oopMax.amount;
@@ -192,9 +223,17 @@ export class OhiReportComponent implements OnInit{
         this.configNotes.push(unmappedAttribute.value);
       }
     }
+    this.indicators = this.plan.unmappedIndicators;
+
+    for (var network of this.plan.networks){
+      if (this.benefitNetworkCodes.includes(network.networkCode))
+        this.benefitLevelNetworks.push(network);
+      else
+        this.planLevelNetworks.push(network);
+    }
   }
 
-  createRange(number){ //To be used as indices in for loops on HTML.
+  createRange(number){ //To be used as indices in *ngFor loops on HTML.
     var items: number[] = [];
     for(var i = 0; i < number; i++)
        items.push(i);

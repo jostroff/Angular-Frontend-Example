@@ -391,13 +391,14 @@
   </thead>
   <tbody>
     <!-- <tr *ngFor="let plan of plans"> -->
-    <tr>
+    <tr *ngFor = "let limitDisplay of limitsDisplayLeft; let index = index">
+    <!-- *ngFor = "let limitDisplay of limitDisplayLeft; let index = index" -->
       <td class = "rowTitles" colspan="2">
-        <!-- {{ limitDisplayLeft[0] }} -->
+        {{ limitsDisplayLeft[index] }}
       </td>
       <!-- <td>{{ plan.planInfo.tierType }}</td> -->
       <td class = "rowData" colspan="2">
-        <!-- {{ limitDisplayRight[0] }} -->
+        {{ limitsDisplayRight[index] }}
       </td>
     </tr>
   </tbody>
@@ -406,14 +407,134 @@
       <th colspan = "4">Mandates</th>
     </tr>
   </thead>
+  <tbody>
+    <!-- <tr *ngFor="let plan of plans"> -->
+    <tr *ngFor = "let stateMandate of stateMandates; let index = index">
+    <!-- *ngFor = "let limitDisplay of limitDisplayLeft; let index = index" -->
+      <td class = "rowTitles" colspan="2">
+        State Mandate: {{ stateMandates[index] }} ???
+      </td>
+      <!-- <td>{{ plan.planInfo.tierType }}</td> -->
+      <td class = "rowData" colspan="2">
+        {{ mandateBenefits[index] }}
+      </td>
+    </tr>
+  </tbody>
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Indicators</th>
     </tr>
   </thead>
+  <tbody>
+    <!-- <tr *ngFor="let plan of plans"> -->
+    <tr *ngFor = "let indicator of indicators">
+    <!-- *ngFor = "let limitDisplay of limitDisplayLeft; let index = index" -->
+      <td class = "rowTitles" colspan="2">
+        {{ indicator.name }}
+      </td>
+      <!-- <td>{{ plan.planInfo.tierType }}</td> -->
+      <td class = "rowData" colspan="2">
+        {{ indicator.value }}
+      </td>
+    </tr>
+  </tbody>
   <thead class="sectionHeader">
     <tr>
       <th colspan = "4">Networks</th>
     </tr>
   </thead>
+  <thead class = "networkHead" colspan = "4">
+    <tr>
+      <th colspan = "4">----Plan Level Network</th>
+    </tr>
+  </thead>
+  <tbody *ngFor = "let network of planLevelNetworks">
+    <tr>
+      <td class = "networkHead" colspan = "4">
+        --------{{ network.networkCode }}-{{ network.networkName }}
+      </td>
+    </tr>
+    <tr>
+      <td class = "rowTitles">
+        NDM Network Code
+      </td>
+      <td class = "rowData">
+        {{ network.networkCode }}
+      </td>
+      <td class = "rowTitles">
+        Network
+      </td>
+      <td class = "rowData">
+        {{ network.networkName }}
+      </td>
+    </tr>
+    <tr>
+      <td class = "rowTitles">
+        Network Type
+      </td>
+      <td class = "rowData">
+        {{ network.networkType }}
+      </td>
+      <td class = "rowTitles">
+        Network Level
+      </td>
+      <td class = "rowData">
+        1 ???
+      </td>
+    </tr>
+  </tbody>
+  <thead class = "networkHead" colspan = "4">
+    <tr>
+      <th colspan = "4">----Benefit Level Networks</th>
+    </tr>
+  </thead>
+  <tbody *ngFor = "let network of benefitLevelNetworks">
+    <tr>
+      <td class = "networkHead" colspan = "4">
+        --------{{ network.networkCode }}-{{ network.networkName }}
+      </td>
+    </tr>
+    <tr>
+      <td class = "rowTitles">
+        NDM Network Code
+      </td>
+      <td class = "rowData">
+        {{ network.networkCode }}
+      </td>
+      <td class = "rowTitles">
+        Network
+      </td>
+      <td class = "rowData">
+        {{ network.networkName }}
+      </td>
+    </tr>
+    <tr>
+      <td class = "rowTitles">
+        Network Type
+      </td>
+      <td class = "rowData">
+        {{ network.networkType }}
+      </td>
+      <td class = "rowTitles">
+        Network Level
+      </td>
+      <td class = "rowData">
+        1 ???
+      </td>
+    </tr>
+  </tbody>
 </table>
+<div class = "footer header-and-footer">
+  <table class = "footer-table">
+    <tbody>
+      <tr>
+        <td class = "footer-title-left" style = "border: 0px">
+          Product Data Management (PDM)
+        </td>
+        <td class = "footer-title-right" style = "border: 0px">
+          Copyright (C) 2021
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -20,6 +20,8 @@ export class OhiReportComponent implements OnInit{
 
   plan: Plan = new Plan_5219();
 
+  column: boolean[] = [];
+
   copays: Copay[] = [];
   copayTiers: string[][] = [[], [], [], [], []];
 
@@ -108,6 +110,21 @@ export class OhiReportComponent implements OnInit{
   ngOnInit(): void {
   }
   generateCopays(): void {
+    this.column["planInfo"] = true;
+    this.column["copay"] = true;
+    this.column["emergency_room"] = false;
+    this.column["inpatient_sdc"] = false;
+    this.column["nontiered_DD"] = false;
+    this.column["tiered_DD"] = false;
+    this.column["oopm"] = false;
+    this.column["coinsurance"] = false;
+    this.column["configNotes"] = false;
+    this.column["exclusions"] = false;
+    this.column["limits"] = true;
+    this.column["mandates"] = false;
+    this.column["indicators"] = false;
+    this.column["networks"] = false;
+
     for (var benefit of this.plan.benefits){
       for (var copay of benefit.benefitCostsharing.copays){
         this.copays.push(copay);
@@ -238,5 +255,9 @@ export class OhiReportComponent implements OnInit{
     for(var i = 0; i < number; i++)
        items.push(i);
     return items;
+  }
+
+  colChange(colId: string): void{
+    this.column[colId] = !this.column[colId];
   }
 }

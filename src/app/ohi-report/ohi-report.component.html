@@ -3,9 +3,9 @@
 <table style = "width: 100%" cellspacing="2pt" cellpadding="2pt">
   <thead class="sectionHeader">
     <tr>
-      <td colspan = "4">
-          <span>
-              {{ plan.planInfo.planID }} - (Version: {{ plan.planInfo.planVersion }} - 
+      <td colspan = "4" (click)="colChange('planInfo')">
+          <span [ngClass] = "{'down_arrow': column['planInfo'], 'right_arrow': !column['planInfo']}">
+            &nbsp; &nbsp; {{ plan.planInfo.planID }} - (Version: {{ plan.planInfo.planVersion }} - 
               <span style = "text-transform: uppercase">{{ plan.unmappedAttributes[0].value }}) </span>
               Effective {{ plan.planInfo.planEffectiveDate }} - {{ plan.planInfo.planRenewalDate }}
           </span>
@@ -14,7 +14,7 @@
       </td>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['planInfo']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr>
       <td class = "rowTitles">
@@ -173,15 +173,16 @@
   </tbody>
 
 
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('copay')">
     <tr>
-      <th colspan = "4">Copay</th>
+      <th colspan = "4"  [ngClass] = "{'down_arrow': column['copay'], 'right_arrow': !column['copay']}">
+        &nbsp; &nbsp; Copay
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody  *ngIf = "column['copay']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr>
-      
       <ng-container *ngFor="let benefit of plan.benefits">
         <ng-container *ngIf = "benefit.locationCode">
           <td class = "rowTitles">
@@ -228,12 +229,15 @@
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  
+  <thead class="sectionHeader" (click)="colChange('emergency_room')">
     <tr>
-      <th colspan = "4">Emergency Room</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['emergency_room'], 'right_arrow': !column['emergency_room']}">
+        &nbsp; &nbsp; Emergency Room (click me)
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['emergency_room']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr>
       <td class = "rowTitles">
@@ -253,17 +257,29 @@
     </tr>
     
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('inpatient_sdc')">
     <tr>
-      <th colspan = "4">Inpatient/Surgical Day Care</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['inpatient_sdc'], 'right_arrow': !column['inpatient_sdc']}">
+        &nbsp; &nbsp; Inpatient/Surgical Day Care
+      </th>
     </tr>
   </thead>
-  <thead class="sectionHeader">
+  <tbody *ngIf = "column['inpatient_sdc']">
     <tr>
-      <th colspan = "4">Non-Tiered Deductibles</th>
+      <td class = "unavailable" colspan = 4>
+        n/a
+      </td>
+    </tr>
+  </tbody>
+
+  <thead class="sectionHeader" (click)="colChange('nontiered_DD')">
+    <tr>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['nontiered_DD'], 'right_arrow': !column['nontiered_DD']}">
+        &nbsp; &nbsp; Non-Tiered Deductibles
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['nontiered_DD']">
     <tr *ngFor = "let index of createRange(3);">
       <td class = "rowTitles">
         {{ nonTieredDDNames[2 * index] }}
@@ -280,24 +296,28 @@
     </tr>
   </tbody>
 
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('tiered_DD')">
     <tr>
-      <th colspan = "4">Tiered Deductibles</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['tiered_DD'], 'right_arrow': !column['tiered_DD']}">
+        &nbsp; &nbsp; Tiered Deductibles
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['tiered_DD']">
     <tr>
       <td class = "unavailable" colspan = 4>
         n/a
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('oopm')">
     <tr>
-      <th colspan = "4">Out-Of-Pocket Maximums</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['oopm'], 'right_arrow': !column['oopm']}">
+        &nbsp; &nbsp; Out-Of-Pocket Maximums
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['oopm']">
     <tr>
       <td class = "rowTitles">
         In-Network OOPM Per Member
@@ -327,12 +347,14 @@
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('coinsurance')">
     <tr>
-      <th colspan = "4">Coinsurance</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['coinsurance'], 'right_arrow': !column['coinsurance']}">
+        &nbsp; &nbsp; Coinsurance
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['coinsurance']">
     <tr>
       <td class = "rowTitles">
         In-Network Coinsurance
@@ -357,12 +379,15 @@
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+
+  <thead class="sectionHeader" (click)="colChange('configNotes')">
     <tr>
-      <th colspan = "4">Configuration Notes</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['configNotes'], 'right_arrow': !column['configNotes']}">
+        &nbsp; &nbsp; Configuration Notes
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['configNotes']">
     <tr *ngFor = "let cn of configNotes">
       <td class = "rowTitles">
         ???
@@ -372,24 +397,28 @@
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('exclusions')">
     <tr>
-      <th colspan = "4">Exclusions</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['exclusions'], 'right_arrow': !column['exclusions']}">
+        &nbsp; &nbsp; Exclusions
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['exclusions']">
     <tr *ngFor = "let exclusion of exclusions">
       <td class = "unavailable" colspan="4">
         {{ exclusion }}
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('limits')">
     <tr>
-      <th colspan = "4">Limits</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['limits'], 'right_arrow': !column['limits']}">
+        &nbsp; &nbsp; Limits
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['limits']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr *ngFor = "let limitDisplay of limitsDisplayLeft; let index = index">
     <!-- *ngFor = "let limitDisplay of limitDisplayLeft; let index = index" -->
@@ -402,12 +431,14 @@
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('mandates')">
     <tr>
-      <th colspan = "4">Mandates</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['mandates'], 'right_arrow': !column['mandates']}">
+        &nbsp; &nbsp; Mandates
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['mandates']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr *ngFor = "let stateMandate of stateMandates; let index = index">
     <!-- *ngFor = "let limitDisplay of limitDisplayLeft; let index = index" -->
@@ -420,12 +451,14 @@
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('indicators')">
     <tr>
-      <th colspan = "4">Indicators</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['indicators'], 'right_arrow': !column['indicators']}">
+        &nbsp; &nbsp; Indicators
+      </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf = "column['indicators']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr *ngFor = "let indicator of indicators">
     <!-- *ngFor = "let limitDisplay of limitDisplayLeft; let index = index" -->
@@ -438,91 +471,95 @@
       </td>
     </tr>
   </tbody>
-  <thead class="sectionHeader">
+  <thead class="sectionHeader" (click)="colChange('networks')">
     <tr>
-      <th colspan = "4">Networks</th>
+      <th colspan = "4" [ngClass] = "{'down_arrow': column['networks'], 'right_arrow': !column['networks']}">
+        &nbsp; &nbsp; Networks
+      </th>
     </tr>
   </thead>
-  <thead class = "networkHead" colspan = "4">
-    <tr>
-      <th colspan = "4">----Plan Level Network</th>
-    </tr>
-  </thead>
-  <tbody *ngFor = "let network of planLevelNetworks">
-    <tr>
-      <td class = "networkHead" colspan = "4">
-        --------{{ network.networkCode }}-{{ network.networkName }}
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        NDM Network Code
-      </td>
-      <td class = "rowData">
-        {{ network.networkCode }}
-      </td>
-      <td class = "rowTitles">
-        Network
-      </td>
-      <td class = "rowData">
-        {{ network.networkName }}
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        Network Type
-      </td>
-      <td class = "rowData">
-        {{ network.networkType }}
-      </td>
-      <td class = "rowTitles">
-        Network Level
-      </td>
-      <td class = "rowData">
-        1 ???
-      </td>
-    </tr>
-  </tbody>
-  <thead class = "networkHead" colspan = "4">
-    <tr>
-      <th colspan = "4">----Benefit Level Networks</th>
-    </tr>
-  </thead>
-  <tbody *ngFor = "let network of benefitLevelNetworks">
-    <tr>
-      <td class = "networkHead" colspan = "4">
-        --------{{ network.networkCode }}-{{ network.networkName }}
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        NDM Network Code
-      </td>
-      <td class = "rowData">
-        {{ network.networkCode }}
-      </td>
-      <td class = "rowTitles">
-        Network
-      </td>
-      <td class = "rowData">
-        {{ network.networkName }}
-      </td>
-    </tr>
-    <tr>
-      <td class = "rowTitles">
-        Network Type
-      </td>
-      <td class = "rowData">
-        {{ network.networkType }}
-      </td>
-      <td class = "rowTitles">
-        Network Level
-      </td>
-      <td class = "rowData">
-        1 ???
-      </td>
-    </tr>
-  </tbody>
+  <ng-container  *ngIf = "column['networks']">
+    <thead class = "networkHead" colspan = "4">
+      <tr>
+        <th colspan = "4">----Plan Level Network</th>
+      </tr>
+    </thead>
+    <tbody *ngFor = "let network of planLevelNetworks">
+      <tr>
+        <td class = "networkHead" colspan = "4">
+          --------{{ network.networkCode }}-{{ network.networkName }}
+        </td>
+      </tr>
+      <tr>
+        <td class = "rowTitles">
+          NDM Network Code
+        </td>
+        <td class = "rowData">
+          {{ network.networkCode }}
+        </td>
+        <td class = "rowTitles">
+          Network
+        </td>
+        <td class = "rowData">
+          {{ network.networkName }}
+        </td>
+      </tr>
+      <tr>
+        <td class = "rowTitles">
+          Network Type
+        </td>
+        <td class = "rowData">
+          {{ network.networkType }}
+        </td>
+        <td class = "rowTitles">
+          Network Level
+        </td>
+        <td class = "rowData">
+          1 ???
+        </td>
+      </tr>
+    </tbody>
+    <thead class = "networkHead" colspan = "4">
+      <tr>
+        <th colspan = "4">----Benefit Level Networks</th>
+      </tr>
+    </thead>
+    <tbody *ngFor = "let network of benefitLevelNetworks">
+      <tr>
+        <td class = "networkHead" colspan = "4">
+          --------{{ network.networkCode }}-{{ network.networkName }}
+        </td>
+      </tr>
+      <tr>
+        <td class = "rowTitles">
+          NDM Network Code
+        </td>
+        <td class = "rowData">
+          {{ network.networkCode }}
+        </td>
+        <td class = "rowTitles">
+          Network
+        </td>
+        <td class = "rowData">
+          {{ network.networkName }}
+        </td>
+      </tr>
+      <tr>
+        <td class = "rowTitles">
+          Network Type
+        </td>
+        <td class = "rowData">
+          {{ network.networkType }}
+        </td>
+        <td class = "rowTitles">
+          Network Level
+        </td>
+        <td class = "rowData">
+          1 ???
+        </td>
+      </tr>
+    </tbody>
+  </ng-container>
 </table>
 <div class = "footer header-and-footer">
   <table class = "footer-table">

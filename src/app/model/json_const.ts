@@ -3034,6 +3034,7 @@ export interface Benefit {
     costshareOrder: string;
     stateMandate: string;
     isExcluded: string; //Not a boolean in actual data.
+    locationCode: string;
     unmappedAttributes: Attribute[];
     unmappedIndicators: Indicator[];
     networks: Network[];

@@ -1,6 +1,46 @@
 
+
+<table style = "width: 100%" cellspacing="2pt" cellpadding="2pt">
+    <thead class="sectionHeader">
+    </thead>
+  
+  <tbody class="button_region">
+    <tr>
+      <td>
+        &nbsp;{{ plan.planInfo.planID }}
+          <span style = "text-transform: uppercase">{{ plan.unmappedAttributes[0].value }}) </span>
+      </td>
+      <td>
+        &nbsp;{{ plan.planInfo.planID }}
+          <span style = "text-transform: uppercase">{{ plan.unmappedAttributes[0].value }}) </span>
+      </td>
+      
+      
+    </tr>
+    <tr>
+      <td colspan = "2">
+        <!-- {{ plan.planInfo.productFamily }} -->
+        Created By
+      </td>
+      <!-- <td>{{ plan.planInfo.tierType }}</td> -->
+      </tr>
+  </tbody>
+  </table>
+
+  <br/>
+
 <!--class="table table-bordered table-striped"-->
 <table style = "width: 100%" cellspacing="2pt" cellpadding="2pt">
+  <thead>
+    <td colspan = "4" class = "button_region">
+      <span style>
+        <button (click) = "expand()" class = "expand_collapse_button">Expand All</button>
+        &nbsp;
+        <button (click) = "collapse()" class = "expand_collapse_button">Collapse All</button>
+      </span>
+    </td>
+  </thead>
+
   <thead class="sectionHeader">
     <tr>
       <td colspan = "4" (click)="colChange('planInfo')">
@@ -14,6 +54,8 @@
       </td>
     </tr>
   </thead>
+
+
   <tbody *ngIf = "column['planInfo']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr>

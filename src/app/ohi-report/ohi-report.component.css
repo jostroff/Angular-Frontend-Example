@@ -87,3 +87,24 @@ th {
 .bgLightGrey {
     background-color: lightgrey;
 }
+
+table.webEntryTable{
+    font-size: 1.2em;
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+
+.button_region {
+    background-color: lightgrey;
+}
+.expand_collapse_button {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    
+}
+.expand_collapse_button:hover {
+    color: #fff;
+    background-color: darkblue;
+    border-color: darkblue;
+}

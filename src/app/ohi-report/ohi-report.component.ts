@@ -24,6 +24,7 @@ export class OhiReportComponent implements OnInit{
 
   copays: Copay[] = [];
   copayTiers: string[][] = [[], [], [], [], []];
+  officeVisit: string[][] = [[], []];
 
   deductibles: Deductible[] = [];
   nonTieredDDMappings: string[] = ["n/a", "n/a", "n/a", "n/a", "No", "No"];
@@ -112,18 +113,18 @@ export class OhiReportComponent implements OnInit{
   generateCopays(): void {
     this.column["planInfo"] = true;
     this.column["copay"] = true;
-    this.column["emergency_room"] = false;
-    this.column["inpatient_sdc"] = false;
-    this.column["nontiered_DD"] = false;
-    this.column["tiered_DD"] = false;
-    this.column["oopm"] = false;
-    this.column["coinsurance"] = false;
-    this.column["configNotes"] = false;
-    this.column["exclusions"] = false;
+    this.column["emergency_room"] = true;
+    this.column["inpatient_sdc"] = true;
+    this.column["nontiered_DD"] = true;
+    this.column["tiered_DD"] = true;
+    this.column["oopm"] = true;
+    this.column["coinsurance"] = true;
+    this.column["configNotes"] = true;
+    this.column["exclusions"] = true;
     this.column["limits"] = true;
-    this.column["mandates"] = false;
-    this.column["indicators"] = false;
-    this.column["networks"] = false;
+    this.column["mandates"] = true;
+    this.column["indicators"] = true;
+    this.column["networks"] = true;
 
     for (var benefit of this.plan.benefits){
       for (var copay of benefit.benefitCostsharing.copays){
@@ -259,5 +260,13 @@ export class OhiReportComponent implements OnInit{
 
   colChange(colId: string): void{
     this.column[colId] = !this.column[colId];
+  }
+  expand(): void {
+    for (var strId in this.column)
+      this.column[strId] = true;
+  }
+  collapse(): void {
+    for (var strId in this.column)
+      this.column[strId] = false;
   }
 }

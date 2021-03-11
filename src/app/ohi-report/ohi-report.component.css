@@ -24,7 +24,7 @@ td {
     display: table-cell;
     vertical-align: inherit;
     border-spacing: 2px;
-    border: 2px solid black;
+    border: 1px solid black;
     /* column-width: 1000px; */
 }
 table {
@@ -108,3 +108,14 @@ table.webEntryTable{
     background-color: darkblue;
     border-color: darkblue;
 }
+.helpbox {
+    background-color: palegreen;
+}
+
+/* .help_table {
+    text-indent: initial;
+    width: 100%;
+}
+.help_tr {
+    border: 2px solid black;
+} */

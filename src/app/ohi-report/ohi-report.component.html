@@ -4,26 +4,75 @@
     <thead class="sectionHeader">
     </thead>
   
-  <tbody class="button_region">
-    <tr>
-      <td>
-        &nbsp;{{ plan.planInfo.planID }}
-          <span style = "text-transform: uppercase">{{ plan.unmappedAttributes[0].value }}) </span>
+  <tbody>
+    <tr class = "helpbox">
+      <td colspan="4">
+        Help
       </td>
-      <td>
-        &nbsp;{{ plan.planInfo.planID }}
-          <span style = "text-transform: uppercase">{{ plan.unmappedAttributes[0].value }}) </span>
-      </td>
-      
-      
     </tr>
-    <tr>
-      <td colspan = "2">
-        <!-- {{ plan.planInfo.productFamily }} -->
-        Created By
+    <tr class = "helpbox">
+      <td style> </td>
+      <td style = "text-align: center;">
+        Plan Id
       </td>
-      <!-- <td>{{ plan.planInfo.tierType }}</td> -->
-      </tr>
+      <td style = "text-align: center;">
+        Version, Effective Start - End Date, Plan State
+      </td>
+      <td style = "text-align: center;">
+        Base Report Sorting
+      </td>
+    </tr>
+    <tr class="button_region">
+      <td>
+        &nbsp; Base/Summary
+      </td>
+      <td>
+        &nbsp;
+        <input type = "text" style = "margin:auto; display:flex;">
+        &nbsp;
+      </td>
+      <td>
+        &nbsp;
+        <input type = "text" style = "margin:auto; display:flex;">
+        &nbsp;
+      </td>
+      <td>
+        &nbsp;
+        <input type = "text" style = "margin:auto; display:flex;">
+        &nbsp;
+      </td>
+    </tr>
+    <tr class="button_region">
+      <td>
+        &nbsp; Comparison
+      </td>
+      <td>
+        &nbsp;
+        <input type = "text" style = "margin:auto; display:flex;">
+        &nbsp;
+      </td>
+      <td>
+        &nbsp;
+        <input type = "text" style = "margin:auto; display:flex;">
+        &nbsp;
+      </td>
+      <td>
+        &nbsp;
+        <input type = "text" style = "margin:auto; display:flex;">
+        &nbsp;
+      </td>
+    </tr>
+    <tr class = "helpbox" class = "button_region">
+      <td> </td>
+      <td colspan = "4">
+        &nbsp;
+        <span style> <!--(click) = "base_summary()" -->
+          <button class = "expand_collapse_button">Base/Summary</button>
+          &nbsp; <!--(click) = "comparison()" -->
+          <button class = "expand_collapse_button">Comparison</button>
+        </span>
+      </td>
+    </tr>
   </tbody>
   </table>
 
@@ -32,7 +81,7 @@
 <!--class="table table-bordered table-striped"-->
 <table style = "width: 100%" cellspacing="2pt" cellpadding="2pt">
   <thead>
-    <td colspan = "4" class = "button_region">
+    <td colspan = "4" class = "button_region" style = "border: 2px solid black;">
       <span style>
         <button (click) = "expand()" class = "expand_collapse_button">Expand All</button>
         &nbsp;

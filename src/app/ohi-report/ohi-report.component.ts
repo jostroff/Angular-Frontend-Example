@@ -24,7 +24,7 @@ export class OhiReportComponent implements OnInit{
 
   copays: Copay[] = [];
   copayTiers: string[][] = [[], [], [], [], []];
-  officeVisit: string[][] = [[], []];
+  officeVisits: string[][] = [[], []];
 
   deductibles: Deductible[] = [];
   nonTieredDDMappings: string[] = ["n/a", "n/a", "n/a", "n/a", "No", "No"];
@@ -129,6 +129,7 @@ export class OhiReportComponent implements OnInit{
     for (var benefit of this.plan.benefits){
       for (var copay of benefit.benefitCostsharing.copays){
         this.copays.push(copay);
+        //Add OfficeVisits below.
       }
       for (var deductible of benefit.benefitCostsharing.deductibles){
         this.deductibles.push(deductible);
@@ -194,6 +195,21 @@ export class OhiReportComponent implements OnInit{
         this.copayTiers[4].push(copay.amount + " copay ");
       else
         this.copayTiers[ (+ copay.networkTier) - 1].push(copay.amount + " copay ");
+      
+       if (copay.location != "" && !this.officeVisits[0].includes(copay.location)
+            && copay.providerTier != ""){ //OffoiceVisit
+          this.officeVisits[0].push(copay.location);
+          var cur = "";
+          if (copay.providerTier.includes("PCP"))
+            cur += "PCP";
+          if (copay.providerTier.includes("Spec")){
+            if (cur == "")
+              cur += "SPEC";
+            else
+              cur += "/SPEC";
+          }
+          this.officeVisits[1].push(cur);
+      }
     }
 
     for (var deductible of this.deductibles){

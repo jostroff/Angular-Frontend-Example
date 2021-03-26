@@ -111,7 +111,7 @@ export class OhiReportComponent implements OnInit{
   ngOnInit(): void {
   }
   generateCopays(): void {
-    this.column["planInfo"] = true;
+    this.column["planInfo"] = true; //Note: Must initialize here. More readable.
     this.column["copay"] = true;
     this.column["emergency_room"] = true;
     this.column["inpatient_sdc"] = true;

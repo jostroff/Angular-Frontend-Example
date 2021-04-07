@@ -274,17 +274,6 @@
   <tbody  *ngIf = "column['copay']">
     <!-- <tr *ngFor="let plan of plans"> -->
     <tr>
-      <!-- <ng-container *ngFor="let benefit of plan.benefits">
-        <ng-container *ngIf = "benefit.locationCode">
-          <td class = "rowTitles">
-            Office Visit Copayment: Loc {{ benefit.locationCode }}
-          </td>
-          <td class = "rowData">
-            {{ benefit.costshareRegimeINCode }}
-          </td>
-        </ng-container>
-      </ng-container> -->
-      
       <ng-container *ngFor="let officeVisit of officeVisits[0]; let index = index">
         <td class = "rowTitles">
           Office Visit Copayment: Loc {{ officeVisits[0][index] }}

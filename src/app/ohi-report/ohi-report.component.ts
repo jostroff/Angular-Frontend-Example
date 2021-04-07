@@ -106,11 +106,11 @@ export class OhiReportComponent implements OnInit{
     // <ng-container *ngFor="let benefit of plan.benefits">
     //       <ng-container *ngFor = "let copay of benefit.benefitCostsharing.copays">
     //         {{ copay.amount }}
-    this.generateCopays();
+    this.generateAttributes();
   }
   ngOnInit(): void {
   }
-  generateCopays(): void {
+  generateAttributes(): void {
     this.column["planInfo"] = true; //Note: Must initialize here. More readable.
     this.column["copay"] = true;
     this.column["emergency_room"] = true;
